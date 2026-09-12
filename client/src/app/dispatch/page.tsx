@@ -5,7 +5,7 @@ import type { WorkOrder } from "@/lib/types";
 
 const NAVY = "#1b3a5c";
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Dispatch planner · HRM Work Orders" };
+export const metadata = { title: "Tree crew dispatch · HRM Work Orders" };
 
 async function load(): Promise<WorkOrder[] | { missing: string }> {
   try {
@@ -32,15 +32,16 @@ export default async function DispatchPage() {
         <div className="h-1.5" style={{ background: NAVY }} />
         <div className="mx-auto w-full max-w-[1400px] space-y-2 px-6 py-8">
           <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">← Re-prioritised work orders</Link>
-          <h1 className="text-3xl font-semibold tracking-tight" style={{ color: NAVY }}>Dispatch planner</h1>
+          <h1 className="text-3xl font-semibold tracking-tight" style={{ color: NAVY }}>Tree crew dispatch</h1>
           <p className="max-w-[70ch] text-base leading-relaxed text-foreground/85">
-            Pick a crew count and a shift length. Each crew leaves the depot and works the highest-priority job it can
-            reach next — Critical (raised to High by the model) 4 h, High 3 h, Medium 2 h, Low 1 h — until the shift is full.
+            Open tree work orders only. Pick a crew count and a shift length; each crew leaves the depot and works the
+            highest-priority job it can reach next — Critical (raised to High by the model) 4 h, High 3 h, Medium 2 h,
+            Low 1 h — until the shift is full.
           </p>
         </div>
       </header>
       <main className="mx-auto w-full max-w-[1400px] px-6 py-6">
-        <DispatchPlanner rows={res} />
+        <DispatchPlanner rows={res.filter((r) => r.assetType === "AST_TREE")} />
       </main>
     </>
   );

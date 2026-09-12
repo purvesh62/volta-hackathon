@@ -57,7 +57,7 @@ export function Hero({ rows }: { rows: WorkOrder[] }) {
             today&apos;s — {changed.toLocaleString()} moved up. Open a row to read why.
           </p>
           <Link href="/dispatch" className="mt-4 inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-white hover:opacity-90" style={{ background: NAVY }}>
-            Plan today&apos;s dispatch →
+            Plan today&apos;s tree crews →
           </Link>
         </div>
         <div className="rounded-lg border bg-background p-5">
